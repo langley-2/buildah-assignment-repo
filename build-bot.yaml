@@ -1,0 +1,15 @@
+apiVersion: v1
+imagePullSecrets:
+- name: build-bot-dockercfg-9jw8h
+kind: ServiceAccount
+metadata:
+  creationTimestamp: "2021-08-10T01:01:05Z"
+  name: build-bot
+  namespace: langley-buildah
+  resourceVersion: "6635335"
+  selfLink: /api/v1/namespaces/langley-buildah/serviceaccounts/build-bot
+  uid: 15bcb372-8615-4371-a0e3-1ea6fb83b72d
+secrets:
+- name: build-bot-token-c2q64
+- name: build-bot-dockercfg-9jw8h
+- name: quay-io-credentials

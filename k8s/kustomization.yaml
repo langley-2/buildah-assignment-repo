@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- deployment.yaml
+- service.yaml
+- route.yaml
+commonLabels:
+  app: langley-express-sample-app
+  app.kubernetes.io/instance: langley-express-sample-app-instance
+  app.kubernetes.io/name: langley-express-sample-app
+images:
+- name: quay.io/upslopeio/express-sample-app
+  newName: quay.io/langley_millard_ibm/express-sample-app
+  newTag: bdc9ad410080aec4a5b8efe656511340a0fa4605

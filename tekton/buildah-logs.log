@@ -1,0 +1,84 @@
+[clone-repository : clone] + CHECKOUT_DIR=/workspace/output/
+[clone-repository : clone] + [[ true == \t\r\u\e ]]
+[clone-repository : clone] + cleandir
+[clone-repository : clone] + [[ -d /workspace/output/ ]]
+[clone-repository : clone] + rm -rf /workspace/output//lost+found
+[clone-repository : clone] + rm -rf '/workspace/output//.[!.]*'
+[clone-repository : clone] + rm -rf '/workspace/output//..?*'
+[clone-repository : clone] + test -z ''
+[clone-repository : clone] + test -z ''
+[clone-repository : clone] + test -z ''
+[clone-repository : clone] + /ko-app/git-init -url https://github.com/langley-2/buildah-assignment-repo -revision '' -refspec '' -path /workspace/output/ -sslVerify=true -submodules=true -depth 1
+[clone-repository : clone] {"level":"info","ts":1628560239.230592,"caller":"git/git.go:157","msg":"Successfully cloned https://github.com/langley-2/buildah-assignment-repo @ 9c650bd1013e7c5c3788137e531525bde00801ad (grafted, HEAD) in path /workspace/output/"}
+[clone-repository : clone] {"level":"info","ts":1628560239.532514,"caller":"git/git.go:198","msg":"Successfully initialized and updated submodules in path /workspace/output/"}
+[clone-repository : clone] + cd /workspace/output/
+[clone-repository : clone] ++ git rev-parse HEAD
+[clone-repository : clone] + RESULT_SHA=9c650bd1013e7c5c3788137e531525bde00801ad
+[clone-repository : clone] + EXIT_CODE=0
+[clone-repository : clone] + '[' 0 '!=' 0 ']'
+[clone-repository : clone] + echo -n 9c650bd1013e7c5c3788137e531525bde00801ad
+[clone-repository : clone] + echo -n https://github.com/langley-2/buildah-assignment-repo
+
+[run-tests : npm-run] npm WARN prepare removing existing node_modules/ before installation
+[run-tests : npm-run] added 99 packages in 1.532s
+[run-tests : npm-run] 
+[run-tests : npm-run] > langley-app@0.0.0 test /workspace/source
+[run-tests : npm-run] > echo 'Error: no test specified'
+[run-tests : npm-run] 
+[run-tests : npm-run] Error: no test specified
+
+[build-image : build] + buildah --storage-driver=overlay bud --format=oci --tls-verify=true --no-cache -f ./Dockerfile -t quay.io/langley_millard_ibm/express-sample-app:9c650bd1013e7c5c3788137e531525bde00801ad .
+[build-image : build] STEP 1: FROM quay.io/upslopeio/node-alpine AS build
+[build-image : build] Getting image source signatures
+[build-image : build] Copying blob sha256:fdd4ce4fd760cc2dc2cd21003bda974f04fa4c6dc16a0eaaee0606e5134b28e9
+[build-image : build] Copying blob sha256:b78962e1a5c8c974c4663e987d7b61e6c80a85d7042819e99b031c377007d69f
+[build-image : build] Copying blob sha256:0040dd60b7a47c7eb81961c48a17926755b00598f9753a499156bb0de7081dd9
+[build-image : build] Copying blob sha256:540db60ca9383eac9e418f78490994d0af424aab7bf6d0e47ac8ed4e2e9bcbba
+[build-image : build] Copying config sha256:48de5d16038cc532b2b5ef91f8d1028f5542b8196f5c6eced9c172894a7af337
+[build-image : build] Writing manifest to image destination
+[build-image : build] Storing signatures
+[build-image : build] STEP 2: WORKDIR /app
+[build-image : build] STEP 3: COPY package*.json ./
+[build-image : build] STEP 4: RUN npm install
+[build-image : build] npm WARN deprecated transformers@2.1.0: Deprecated, use jstransformer
+[build-image : build] npm WARN deprecated constantinople@3.0.2: Please update to at least constantinople 3.1.1
+[build-image : build] npm WARN deprecated jade@1.11.0: Jade has been renamed to pug, please install the latest version of pug instead of jade
+[build-image : build] 
+[build-image : build] added 99 packages, and audited 100 packages in 4s
+[build-image : build] 
+[build-image : build] 5 vulnerabilities (3 low, 2 critical)
+[build-image : build] 
+[build-image : build] To address all issues (including breaking changes), run:
+[build-image : build]   npm audit fix --force
+[build-image : build] 
+[build-image : build] Run `npm audit` for details.
+[build-image : build] npm notice 
+[build-image : build] npm notice New minor version of npm available! 7.15.1 -> 7.20.5
+[build-image : build] npm notice Changelog: <https://github.com/npm/cli/releases/tag/v7.20.5>
+[build-image : build] npm notice Run `npm install -g npm@7.20.5` to update!
+[build-image : build] npm notice 
+[build-image : build] STEP 5: COPY . .
+[build-image : build] STEP 6: EXPOSE 3000
+[build-image : build] STEP 7: CMD npm start
+[build-image : build] STEP 8: COMMIT quay.io/langley_millard_ibm/express-sample-app:9c650bd1013e7c5c3788137e531525bde00801ad
+[build-image : build] --> fbc57454065
+[build-image : build] fbc5745406519b2ed32c18dd3cd7ef91860f1b5b06694797ef7e747ebaf0c981
+
+[build-image : push] + buildah --storage-driver=overlay push --tls-verify=true --digestfile /workspace/source/image-digest quay.io/langley_millard_ibm/express-sample-app:9c650bd1013e7c5c3788137e531525bde00801ad docker://quay.io/langley_millard_ibm/express-sample-app:9c650bd1013e7c5c3788137e531525bde00801ad
+[build-image : push] Getting image source signatures
+[build-image : push] Copying blob sha256:ffdb58a8d52ecd8992937dc49ef9e93a173597d6581b15bbdb527d388a3b4297
+[build-image : push] Copying blob sha256:d70a24f36618818e5c04bcfc323746e7f133d034d55f9a204b0b027bfd8b2b38
+[build-image : push] Copying blob sha256:6ff94098dca3125f917df25ed8fcae9079c9ab40c338022d84fdec4e42cf6f55
+[build-image : push] Copying blob sha256:ace9a27c01e56038c748285486c474da9d1f9c07f9b72ef437a192be8f7586ce
+[build-image : push] Copying blob sha256:b2d5eeeaba3a22b9b8aa97261957974a6bd65274ebd43e1d81d0a7b8b752b116
+[build-image : push] Copying config sha256:fbc5745406519b2ed32c18dd3cd7ef91860f1b5b06694797ef7e747ebaf0c981
+[build-image : push] Writing manifest to image destination
+[build-image : push] Copying config sha256:fbc5745406519b2ed32c18dd3cd7ef91860f1b5b06694797ef7e747ebaf0c981
+[build-image : push] Writing manifest to image destination
+[build-image : push] Writing manifest to image destination
+[build-image : push] Storing signatures
+
+[build-image : digest-to-results] + cat /workspace/source/image-digest
+[build-image : digest-to-results] + tee /tekton/results/IMAGE_DIGEST
+[build-image : digest-to-results] sha256:69580ff9467ea62bd4f2502aaa4a1428155d0a5cbc3e33d86768390a2de03123
+
